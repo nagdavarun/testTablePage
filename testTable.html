@@ -1,0 +1,69 @@
+
+
+<html>
+
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800;900&display=swap" rel="stylesheet">
+    <script src="testTable.js"></script>
+    <link rel="stylesheet" href="testTable.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+
+<body class="body_class">
+    <div onload="createTable();"></div>
+    <div class="filter_head">
+        <h1>Filter <span>airports</span> </h1>
+        <img width="20" src="square.svg" alt="">
+    </div>
+    <div class="filter_search" id="filter_search">
+        <div class="filter" id="filter">
+            <div class="heading">Filter</div>
+            <div class="custom-control custom-checkbox custom-control-inline">
+                <input type="checkbox" onclick="filterArr('small')" name="Small" id="Small"
+                    class="custom-control-input">
+                <label class="custom-control-label curPointer" for="Small">Small</label>
+            </div>
+            <div class="custom-control custom-checkbox custom-control-inline">
+                <input type="checkbox" onclick="filterArr('medium')" name="Medium" id="Medium"
+                    class="custom-control-input">
+                <label class="custom-control-label curPointer" for="Medium">Medium</label>
+            </div>
+            <div class="custom-control custom-checkbox custom-control-inline">
+                <input type="checkbox" onclick="filterArr('large')" name="Large" id="Large"
+                    class="custom-control-input">
+                <label class="custom-control-label curPointer" for="Large">Large</label>
+            </div>
+            <div class="custom-control custom-checkbox custom-control-inline">
+                <input type="checkbox" onclick="filterArr('heliport')" name="Heliport" id="Heliport"
+                    class="custom-control-input">
+                <label class="custom-control-label curPointer" for="Heliport">Heliport</label>
+            </div>
+            <div class="custom-control custom-checkbox custom-control-inline">
+                <input type="checkbox" onclick="filterArr('closed')" name="Closed" id="Closed"
+                    class="custom-control-input">
+                <label class="custom-control-label curPointer" for="Closed">Closed</label>
+            </div>
+        </div>
+        <div class="search" id="search">
+            <div class="heading">Filter by search</div>
+            <!-- onkeyup="myFunction()" -->
+            <input type="text" id="myInput" class="form-control input_field search-input" 
+                placeholder="Search airport details..." data-table="customers-list" title="Type in a name">
+        </div>
+    </div>
+    <div>
+        Page size
+        <select class="form-control select_class" id="selectOption" onchange="valueSelected()">
+            <option disabled selected>Select</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="all">All</option>
+        </select>
+    </div>
+    <div class="showTable" id="showData"></div>
+</body>
+
+</html>
