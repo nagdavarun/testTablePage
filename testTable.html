@@ -1,5 +1,3 @@
-
-
 <html>
 
 <head>
@@ -18,7 +16,7 @@
     </div>
     <div class="filter_search" id="filter_search">
         <div class="filter" id="filter">
-            <div class="heading">Filter</div>
+            <div class="heading" id="filterheading">Filters</div>
             <div class="custom-control custom-checkbox custom-control-inline">
                 <input type="checkbox" onclick="filterArr('small')" name="Small" id="Small"
                     class="custom-control-input">
@@ -46,13 +44,13 @@
             </div>
         </div>
         <div class="search" id="search">
-            <div class="heading">Filter by search</div>
+            <div class="heading" id="searchHeader">Filter by search</div>
             <!-- onkeyup="myFunction()" -->
-            <input type="text" id="myInput" class="form-control input_field search-input" 
+            <input type="text" id="myInput" class="form-control input_field search-input"
                 placeholder="Search airport details..." data-table="customers-list" title="Type in a name">
         </div>
     </div>
-    <div>
+    <div class="page_size">
         Page size
         <select class="form-control select_class" id="selectOption" onchange="valueSelected()">
             <option disabled selected>Select</option>

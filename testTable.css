@@ -24,6 +24,7 @@
 
     .showTable {
         overflow: auto;
+        height  : 100%;
     }
 
     table {
@@ -34,6 +35,9 @@
     table th {
         font-weight: 900;
         background : #d6d6d6;
+        position   : sticky !important;
+        position   : -webkit-sticky;
+        top        : 0;
     }
 
     table th,
@@ -94,6 +98,10 @@
         width        : 100%;
         border       : transparent;
         border-bottom: 3px solid;
+    }
+
+    .page_size{
+        padding-bottom: 15px;
     }
 
     /* checkbox css */

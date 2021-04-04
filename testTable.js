@@ -9,8 +9,17 @@ function jsonData() {
             airportJson = data
         });
 }
-
-
+setTimeout(() => {
+    if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        document.getElementById("filter_search").style.display = "block";
+        document.getElementById("filter").style.cssText = "padding-bottom:10px; display: block; width:100%"
+        document.getElementById("search").style.cssText = "padding-bottom:10px; width:100%"
+        document.getElementById("selectOption").style.cssText = "margin-top:10px; width:100% margin-left:0px"
+        document.getElementById("filterheading").style.paddingBottom = "10px";
+        document.getElementById("searchHeader").style.paddingBottom = "10px";
+    }
+}, 100);
+// search table
 (function (document) {
     'use strict';
 
@@ -82,6 +91,7 @@ jsonData()
 
 // Table creation
 function createTable(value) {
+    jsonData()
     setTimeout(() => {
         if (value == undefined || !value) {
             value = airportJson.length
@@ -172,33 +182,3 @@ function filterArr(value) {
     }, 500);
 }
 
-function myFunction() {
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("tableData");
-    tr = table.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
-            }
-        }
-    }
-}
-setTimeout(() => {
-    if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        console.log("mobile view")
-        document.getElementById("filter_search").style.display = "block";
-        document.getElementById("filter").style.padding = "10px 0px";
-        document.getElementById("filter").style.display = "flex";
-        document.getElementById("search").style.paddingBlockEnd = "10px";
-        document.getElementById("selectOption").style.width = "100%";
-    } else {
-        console.log("desktop view")
-    }
-}, 1000);
