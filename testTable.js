@@ -1,4 +1,3 @@
-{/* <script> */ }
 // json data
 var airportJson
 function jsonData() {
@@ -57,12 +56,7 @@ function jsonData() {
 "use strict";
 Array.prototype.flexFilter = function (info) {
 
-    // Set our variables
     var matchesFilter, matches = [], count;
-
-    // Helper function to loop through the filter criteria to find matching values
-    // Each filter criteria is treated as "AND". So each item must match all the filter criteria to be considered a match.
-    // Multiple filter values in a filter field are treated as "OR" i.e. ["Blue", "Green"] will yield items matching a value of Blue OR Green.
     matchesFilter = function (item) {
         count = 0
         for (var n = 0; n < info.length; n++) {
@@ -70,19 +64,15 @@ Array.prototype.flexFilter = function (info) {
                 count++;
             }
         }
-        // If TRUE, then the current item in the array meets all the filter criteria
         return count == info.length;
     }
 
-    // Loop through each item in the array
     for (var i = 0; i < this.length; i++) {
-        // Determine if the current item matches the filter criteria
         if (matchesFilter(this[i])) {
             matches.push(this[i]);
         }
     }
 
-    // Give us a new array containing the objects matching the filter criteria
     return matches;
 }
 // filter ended
@@ -95,11 +85,13 @@ function createTable(value) {
     setTimeout(() => {
         if (value == undefined || !value) {
             value = airportJson.length
+            // value = "10"
         }
         else if (value == "all") {
             value = airportJson.length
         }
         var col = ["name", "icao", "iata", "altitude", "latitude", "longitude", "type"];
+        var header = ["Name", "ICAO", "IATA", "Elev.", "Lat.", "Long.", "Type"]
         var table = document.createElement("table");
         table.setAttribute("id", "tableData")
         table.setAttribute("CELLSPACING", "0")
@@ -109,9 +101,9 @@ function createTable(value) {
         var rowHead = document.createElement('tr');
         table.appendChild(tblHead);
         tblHead.appendChild(rowHead)
-        for (var i = 0; i < col.length; i++) {
+        for (var i = 0; i < header.length; i++) {
             var th = document.createElement("th");
-            th.innerHTML = col[i];
+            th.innerHTML = header[i];
             rowHead.appendChild(th);
         }
         var tblBody = document.createElement("tbody");
@@ -119,6 +111,15 @@ function createTable(value) {
             var row = document.createElement("tr");
             for (var j = 0; j < col.length; j++) {
                 var cell = document.createElement("td");
+                if (col[j] == 'altitude') {
+                    airportJson[i]['altitude'] = (airportJson[i]['altitude'] * 3.281).toFixed(2) + 'ft'
+                }
+                if (col[j] == 'latitude') {
+                    airportJson[i]['latitude'] = (airportJson[i]['latitude']).toFixed(4)
+                }
+                if (col[j] == 'longitude') {
+                    airportJson[i]['longitude'] = (airportJson[i]['longitude']).toFixed(4)
+                }
                 var cellText = document.createTextNode(airportJson[i][col[j]]);
                 cell.appendChild(cellText);
                 row.appendChild(cell);
@@ -130,7 +131,6 @@ function createTable(value) {
         var divContainer = document.getElementById("showData");
         divContainer.innerHTML = "";
         divContainer.appendChild(table);
-        // }
     }, 1000);
 }
 
@@ -202,5 +202,3 @@ setTimeout(() => {
         console.log("desktop view")
     }
 }, 1000);
-
-// </script>
