@@ -100,7 +100,7 @@ function createTable(value) {
         else if (value == "all") {
             value = airportJson.length
         }
-        var col = ["name", "icao", "iata", "altitude", "latitude", "longitude", "type"];
+        var colHeader = ["name", "icao", "iata", "altitude", "latitude", "longitude", "type"];
         var header = ["Name", "ICAO", "IATA", "Elev.", "Lat.", "Long.", "Type"]
         var table = document.createElement("table");
         table.setAttribute("id", "tableData")
@@ -119,18 +119,18 @@ function createTable(value) {
         var tblBody = document.createElement("tbody");
         for (var i = 0; i < value; i++) {
             var row = document.createElement("tr");
-            for (var j = 0; j < col.length; j++) {
+            for (var j = 0; j < colHeader.length; j++) {
                 var cell = document.createElement("td");
-                if (col[j] == 'altitude') {
+                if (colHeader[j] == 'altitude') {
                     airportJson[i]['altitude'] = (airportJson[i]['altitude'] * 3.281).toFixed(2) + 'ft'
                 }
-                if (col[j] == 'latitude') {
+                if (colHeader[j] == 'latitude') {
                     airportJson[i]['latitude'] = (airportJson[i]['latitude']).toFixed(4)
                 }
-                if (col[j] == 'longitude') {
+                if (colHeader[j] == 'longitude') {
                     airportJson[i]['longitude'] = (airportJson[i]['longitude']).toFixed(4)
                 }
-                var cellText = document.createTextNode(airportJson[i][col[j]]);
+                var cellText = document.createTextNode(airportJson[i][colHeader[j]]);
                 cell.appendChild(cellText);
                 row.appendChild(cell);
             }
@@ -148,7 +148,6 @@ function valueSelected() {
     setTimeout(() => {
         var e = document.getElementById("selectOption");
         var strUser = e.value;
-        console.log(strUser, "strUser")
         if (document.getElementById("tableData") != null) {
             document.getElementById("tableData").remove()
         }
